@@ -1,0 +1,135 @@
+/* ==========================================
+   劉子翊個人品牌形象網站 style.css
+   配色：深藍 x 珊瑚橘 x 米白（三色原則）
+   ========================================== */
+
+/* 全站顏色變數：要換配色只改這裡（L07） */
+:root{
+  --main:   #1d3557;   /* 主色：深藍 — 沉穩、有技術感 */
+  --accent: #e76f51;   /* 強調色：珊瑚橘 — 按鈕與重點 */
+  --bg:     #f8f9fa;   /* 底色：米白 — 大面積背景 */
+  --text:   #333333;   /* 內文深灰 — 比純黑柔和 */
+}
+
+/* 平滑捲動（L08）：所有錨點跳轉都改成用「滑」的 */
+html{
+  scroll-behavior: smooth;
+}
+
+/* 基本重置：清掉瀏覽器預設的邊距（L07） */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;   /* 行高 1.8 倍，中文閱讀最舒服 */
+}
+
+/* 暫時樣式：讓還沒完工的區塊看得出分隔（L09 會換成正式設計系統） */
+/* border-bottom 已依 L08 講義移除，避免影響 Hero 區 */
+section{
+  padding: 60px 20px;
+}
+
+section h2{
+  color: var(--main);
+  font-size: 28px;
+  font-weight: 900;
+}
+
+/* ===== 導覽列（L08） ===== */
+.nav{
+  display: flex;
+  justify-content: space-between;  /* logo 推最左、連結推最右 */
+  align-items: center;             /* 垂直置中 */
+  padding: 16px 40px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .08);  /* 淡淡的影子，浮在內容上 */
+  position: sticky;   /* 捲到頂端時「黏住」 */
+  top: 0;             /* 黏在距頂端 0 的位置（必寫！） */
+  z-index: 100;       /* 疊在其他內容上面，避免被蓋住 */
+}
+
+.logo{
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--main);
+  letter-spacing: .05em;
+}
+.logo span{ color: var(--accent); }   /* 彩色句點 */
+
+.nav nav{
+  display: flex;
+  gap: 28px;
+}
+
+/* 連結 hover：變色＋浮出底線（L08 舉一反三基礎題）
+   先用透明底線佔位，hover 只換顏色，版面才不會跳動 */
+.nav a{
+  text-decoration: none;      /* 拿掉連結底線 */
+  color: var(--main);
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.nav a:hover{
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ===== Hero 區（L08） ===== */
+.hero-sec{
+  min-height: 100vh;               /* 至少一個螢幕高 */
+  display: flex;
+  flex-direction: column;          /* 內容改成直的疊 */
+  justify-content: center;         /* 主軸(直向)置中 */
+  align-items: center;             /* 交錯軸(橫向)置中 */
+  text-align: center;
+  padding: 0 20px;
+  /* 漸層背景：同色系深到淺最不會出錯（135deg = 左上流向右下） */
+  background: linear-gradient(135deg, var(--main) 0%, #457b9d 100%);
+  color: #ffffff;
+}
+
+.hero-hi{
+  font-size: 18px;
+  letter-spacing: .2em;
+  color: rgba(255, 255, 255, .75);   /* 比名字淡一階，有主角配角之分 */
+}
+
+.hero-sec h1{
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  margin: 6px 0 4px;
+}
+
+.hero-sub{
+  font-size: 18px;
+  color: rgba(255, 255, 255, .85);
+  margin-bottom: 36px;    /* 副標和按鈕之間的呼吸空間 */
+}
+
+/* ===== CTA 按鈕（L08，聯絡區也重複使用） ===== */
+.btn{
+  display: inline-block;           /* a 是行內元素，轉成 inline-block 才吃得到完整 padding */
+  background: var(--accent);
+  color: #ffffff;
+  padding: 14px 36px;
+  border-radius: 999px;            /* 超大值 = 完美膠囊形 */
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .08em;
+  transition: transform .2s ease, box-shadow .2s ease;  /* 寫在原始狀態，來回都平滑 */
+}
+
+.btn:hover{
+  transform: translateY(-3px);                    /* 往上浮 3px */
+  box-shadow: 0 10px 22px rgba(231, 111, 81, .4); /* 同色系光暈影子 */
+}
